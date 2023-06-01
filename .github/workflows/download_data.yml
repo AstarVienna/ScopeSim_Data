@@ -1,7 +1,6 @@
 name: Download data required by ScopeSim
 
 on:
-  push:
   schedule:
     - # Run every day at 4:00 UTC
     - cron: "0 5 * * *"
