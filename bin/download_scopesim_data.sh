@@ -63,22 +63,22 @@ source envdata/bin/activate
 # TODO: Use default branch for skycalc_ipy once hb/storedata is merged.
 git clone -b hb/storedata https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
-pip install -e ".[test]"
+pip install -e ".[test,docs]"
 popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
 pushd AnisoCADO
-pip install -e ".[test]"
+pip install -e ".[test,dev,docs]"
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
-pip install -e ".[test]"
+pip install -e ".[test,dev,docs]"
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
-pip install -e ".[test]"
+pip install -e ".[test,dev,docs]"
 popd
 
 git clone https://github.com/AstarVienna/irdb.git
