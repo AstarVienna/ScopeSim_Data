@@ -1,0 +1,2 @@
+include scopesim_data/data/skycalc_ipy/*.fits
+include scopesim_data/data/skycalc_ipy/*.json
