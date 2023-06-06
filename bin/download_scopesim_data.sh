@@ -41,7 +41,6 @@ fi
 
 
 # Get the right directories.
-# TODO: Derive/create/find these directories automatically?
 DIR_DATA_SKYCALC="${DIR_DATA}/skycalc_ipy"
 mkdir -p "${DIR_WORK}"
 mkdir -p "${DIR_DATA}"
@@ -60,8 +59,7 @@ source envdata/bin/activate
 # releases do not (always) have the test files.
 # TODO: Add speXtra and Pickles?
 
-# TODO: Use default branch for skycalc_ipy once hb/storedata is merged.
-git clone -b hb/storedata https://github.com/AstarVienna/skycalc_ipy.git
+git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
 pip install -e ".[test,docs]"
 popd
