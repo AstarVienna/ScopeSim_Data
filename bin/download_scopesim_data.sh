@@ -34,14 +34,15 @@ if [[ $# -gt 1 ]]; then
 fi
 
 if [[ $# -lt 2 ]]; then
-  DIR_DATA=$(python -c "from scopesim_data import dir_scopesim_cache; print(dir_scopesim_cache)")
+  DIR_DATA=$(python -c "from scopesim_data import dir_cache; print(dir_cache)")
+  DIR_DATA_SKYCALC=$(python -c "from scopesim_data import dir_cache_skycalc; print(dir_cache_skycalc)")
 else
   DIR_DATA=$1
+  DIR_DATA_SKYCALC="${DIR_DATA}/skycalc_ipy"
 fi
 
 
 # Get the right directories.
-DIR_DATA_SKYCALC="${DIR_DATA}/skycalc_ipy"
 mkdir -p "${DIR_WORK}"
 mkdir -p "${DIR_DATA}"
 mkdir -p "${DIR_DATA_SKYCALC}"
