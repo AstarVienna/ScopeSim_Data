@@ -54,7 +54,7 @@ export SKYCALC_IPY_CACHE_DIR="${DIR_DATA_SKYCALC}"
 pushd "${DIR_WORK}"
 python -m venv envdata
 source envdata/bin/activate
-
+pip install poetry
 
 # Download and install all the packages. Has to be done from git, because the
 # releases do not (always) have the test files.
@@ -62,26 +62,31 @@ source envdata/bin/activate
 
 git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
-pip install -e ".[test,docs]"
+poetry install --with=test,docs
+pip install -e .
 popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
 pushd AnisoCADO
+# AnisoCADO doesn't use poetry yet.
 pip install -e ".[test,dev,docs]"
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
-pip install -e ".[test,dev,docs]"
+poetry install --with=test,dev,docs
+pip install -e .
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
-pip install -e ".[test,dev,docs]"
+poetry install --with=test,dev,docs
+pip install -e .
 popd
 
 git clone https://github.com/AstarVienna/irdb.git
 pushd irdb
+# irdb doesn't use poetry yet
 pip install -e ".[test]"
 popd
 
