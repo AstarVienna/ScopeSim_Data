@@ -68,6 +68,8 @@ popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
 pushd AnisoCADO
+# AnisoCADO doesn't use poetry yet.
+pip install -e ".[test,dev,docs]"
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
