@@ -63,7 +63,6 @@ pip install poetry
 git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
 poetry install --with=test,docs
-pip install -e .
 popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
@@ -81,7 +80,6 @@ popd
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
 poetry install --with=test,dev,docs
-pip install -e .
 popd
 
 git clone https://github.com/AstarVienna/irdb.git
