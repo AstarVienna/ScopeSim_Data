@@ -37,3 +37,18 @@ jobs:
           labels: |
             automated
           draft: false
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ always() && (needs.download_data.result == 'failure' || needs.download_data.result == 'timed_out') }}
+    needs:
+      - download_data
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_USERNAME: GH Actions Bot
+        SLACK_TITLE: Workflow ${{ needs.download_data.result }}
+        MSG_MINIMAL: actions url
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
