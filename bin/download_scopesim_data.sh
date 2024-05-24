@@ -111,6 +111,9 @@ pip install -e ".[test]"
 popd
 
 
+# Print debug info.
+python -c "import scopesim; scopesim.bug_report()"
+
 
 # Run the tests.
 pushd skycalc_ipy
