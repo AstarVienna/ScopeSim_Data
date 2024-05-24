@@ -18,7 +18,9 @@ fi
 
 # deletes the temp directory
 function cleanup {
-  rm -r "${DIR_WORK}"
+  # This requires --force because there are .git directories
+  # that have read-only files in them.
+  rm -rf "${DIR_WORK}"
   echo "Deleted temp working directory ${DIR_WORK}"
 }
 
@@ -41,6 +43,18 @@ else
   DIR_DATA_SKYCALC="${DIR_DATA}/skycalc_ipy"
 fi
 
+function liberate_dependencies {
+  # Replace all ^ dependencies with >= so we test whether the software
+  # in the ScopeSim ecosystem works with the latest dependencies of each
+  # package. For example, we might have astropy = ^5.3.4 listed while
+  # 6.x.y is already out. Changing this here ensures we run at least one
+  # test with the most up to date dependencies.
+  # The Python version is kept at e.g. ^3.9 because otherwise poetry update
+  # will try (and fail) to find a solution for Python 4 as well.
+  sed -i 's/ = "^/ = ">=/g;s/python = ">=/python = "^/g' pyproject.toml
+  poetry update
+}
+
 
 # Get the right directories.
 mkdir -p "${DIR_WORK}"
@@ -60,8 +74,15 @@ pip install poetry
 # releases do not (always) have the test files.
 # TODO: Add speXtra and Pickles?
 
+git clone https://github.com/AstarVienna/astar-utils.git
+pushd astar-utils
+liberate_dependencies
+poetry install --with=test
+popd
+
 git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
+liberate_dependencies
 poetry install --with=test,docs
 popd
 
@@ -79,6 +100,7 @@ popd
 
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
+liberate_dependencies
 poetry install --with=test,dev,docs
 popd
 
