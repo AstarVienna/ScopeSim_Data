@@ -60,6 +60,11 @@ pip install poetry
 # releases do not (always) have the test files.
 # TODO: Add speXtra and Pickles?
 
+git clone https://github.com/AstarVienna/ScopeSim.git
+pushd ScopeSim
+poetry install --with=test,dev,docs
+popd
+
 git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
 poetry install --with=test,docs
@@ -73,11 +78,6 @@ popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
-poetry install --with=test,dev,docs
-popd
-
-git clone https://github.com/AstarVienna/ScopeSim.git
-pushd ScopeSim
 poetry install --with=test,dev,docs
 popd
 
