@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -25,7 +25,7 @@ jobs:
 
       # Create a PR with the changes from the above script, if any.
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v5  # current version is v7, maybe update...
         with:
           commit-message: "Update stored data"
           branch: update-stored-data
@@ -44,7 +44,7 @@ jobs:
     needs:
       - download_data
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
