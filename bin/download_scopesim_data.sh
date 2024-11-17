@@ -58,15 +58,32 @@ pip install poetry
 
 # Download and install all the packages. Has to be done from git, because the
 # releases do not (always) have the test files.
-# TODO: Add speXtra and Pickles?
+# All poetry files are updated with `poetry lock` to ensure we test the latest
+# versions of our dependencies.
+
+# Pyckles must go first, because otherwise it uninstalls scipy (????). See
+# https://stackoverflow.com/questions/67085976/how-to-stop-poetry-from-uninstalling-packages
+git clone https://github.com/AstarVienna/Pyckles.git
+pushd Pyckles
+poetry lock
+poetry install --with=test,docs
+popd
+
+git clone https://github.com/AstarVienna/speXtra.git
+pushd speXtra
+poetry lock
+poetry install --with=test,docs
+popd
 
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
+poetry lock
 poetry install --with=test,dev,docs
 popd
 
 git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
+poetry lock
 poetry install --with=test,docs
 popd
 
@@ -78,6 +95,7 @@ popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
+poetry lock
 poetry install --with=test,dev,docs
 popd
 
@@ -87,9 +105,29 @@ pushd irdb
 pip install -e ".[test]"
 popd
 
+# poetry lock will upgrade only to the latest versions that are released,
+# thereby downgrading each other.
+# But ScopeSim_Data should use the latest version of all our projects
+# (to download the data they need, and to test whether they work together).
+# So the projects need to be installed again.
+pip install -e Pyckles
+pip install -e speXtra
+pip install -e ScopeSim
+pip install -e ScopeSim_Templates
+pip install -e skycalc_ipy
+pip install -e AnisoCado
+pip install -e irdb
 
 
 # Run the tests.
+pushd Pyckles
+python -m pytest
+popd
+
+pushd speXtra
+python -m pytest
+popd
+
 pushd skycalc_ipy
 python -m pytest
 popd
