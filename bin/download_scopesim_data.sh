@@ -115,7 +115,7 @@ pip install -e speXtra
 pip install -e ScopeSim
 pip install -e ScopeSim_Templates
 pip install -e skycalc_ipy
-pip install -e AnisoCado
+pip install -e AnisoCADO
 pip install -e irdb
 
 
