@@ -58,33 +58,33 @@ pip install poetry
 
 # Download and install all the packages. Has to be done from git, because the
 # releases do not (always) have the test files.
-# All poetry files are updated with `poetry lock` to ensure we test the latest
+# All poetry files are updated with `poetry update` to ensure we test the latest
 # versions of our dependencies.
 
 # Pyckles must go first, because otherwise it uninstalls scipy (????). See
 # https://stackoverflow.com/questions/67085976/how-to-stop-poetry-from-uninstalling-packages
 git clone https://github.com/AstarVienna/Pyckles.git
 pushd Pyckles
-poetry lock
 poetry install --with=test,docs
+poetry update
 popd
 
 git clone https://github.com/AstarVienna/speXtra.git
 pushd speXtra
-poetry lock
 poetry install --with=test,docs
+poetry update
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
-poetry lock
 poetry install --with=test,dev,docs
+poetry update
 popd
 
 git clone https://github.com/AstarVienna/skycalc_ipy.git
 pushd skycalc_ipy
-poetry lock
 poetry install --with=test,docs
+poetry update
 popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
@@ -95,8 +95,8 @@ popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
-poetry lock
 poetry install --with=test,dev,docs
+poetry update
 popd
 
 git clone https://github.com/AstarVienna/irdb.git
@@ -105,11 +105,14 @@ pushd irdb
 pip install -e ".[test]"
 popd
 
-# poetry lock will upgrade only to the latest versions that are released,
-# thereby downgrading each other.
+# poetry update will upgrade only to the latest versions that are released.
+# The packages will therefore downgrade each other.
 # But ScopeSim_Data should use the latest version of all our projects
 # (to download the data they need, and to test whether they work together).
 # So the projects need to be installed again.
+# Note that it is not possible to only use pip, poetry is required to install
+# the dependency groups (that is, dev/test/docs). See
+# https://stackoverflow.com/questions/76118614/is-it-possible-to-install-poetry-groups-with-pip
 pip install -e Pyckles
 pip install -e speXtra
 pip install -e ScopeSim
