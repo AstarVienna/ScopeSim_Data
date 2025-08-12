@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -46,7 +46,7 @@ jobs:
     needs:
       - download_data
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
