@@ -56,6 +56,7 @@ python -m venv envdata
 source envdata/bin/activate
 pip install --upgrade pip
 pip install poetry
+pip install packaging
 
 # Download and install all the packages. Has to be done from git, because the
 # releases do not (always) have the test files.
