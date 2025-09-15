@@ -54,6 +54,7 @@ export SKYCALC_IPY_CACHE_DIR="${DIR_DATA_SKYCALC}"
 pushd "${DIR_WORK}"
 python -m venv envdata
 source envdata/bin/activate
+pip install --upgrade pip
 pip install poetry
 
 # Download and install all the packages. Has to be done from git, because the
