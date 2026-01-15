@@ -27,7 +27,7 @@ jobs:
 
       # Create a PR with the changes from the above script, if any.
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7  # current version is v7, maybe update...
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Update stored data"
           branch: update-stored-data
