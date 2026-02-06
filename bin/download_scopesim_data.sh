@@ -100,10 +100,10 @@ poetry update --with=test,dev,docs
 popd
 
 git clone https://github.com/AstarVienna/irdb.git
-pushd irdb
+# pushd irdb
 # irdb doesn't use poetry yet
-pip install -e ".[test]"
-popd
+# pip install -e ".[test]"
+# popd
 
 # poetry update will upgrade only to the latest versions that are released.
 # The packages will therefore downgrade each other.
@@ -119,7 +119,7 @@ pip install -e ScopeSim
 pip install -e ScopeSim_Templates
 pip install -e skycalc_ipy
 pip install -e AnisoCADO
-pip install -e irdb
+# pip install -e irdb
 
 
 # Run the tests.
