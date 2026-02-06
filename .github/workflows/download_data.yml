@@ -20,7 +20,7 @@ on:
 jobs:
   download_data:
     runs-on: ubuntu-latest
-    if: ${{ !github.event.pull_request.draft }}
+    if: ${{ !github.event.pull_request.draft && !contains(github.event.pull_request.labels.*.name, 'automated')}}
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v6
