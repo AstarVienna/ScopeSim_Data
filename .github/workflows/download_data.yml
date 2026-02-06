@@ -1,6 +1,15 @@
 name: Download data required by ScopeSim
 
 on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
   schedule:
     # Run every day at 6:00 UTC
     - cron: "0 6 * * *"
@@ -11,6 +20,7 @@ on:
 jobs:
   download_data:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft && !contains(github.event.pull_request.labels.*.name, 'automated')}}
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v6
@@ -42,7 +52,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.download_data.result == 'failure' || needs.download_data.result == 'timed_out') }}
+    if: ${{ always() && (needs.download_data.result == 'failure' || needs.download_data.result == 'timed_out') && !(github.event_name == 'pull_request') }}
     needs:
       - download_data
     steps:
