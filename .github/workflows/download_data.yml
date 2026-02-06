@@ -3,7 +3,7 @@ name: Download data required by ScopeSim
 on:
   pull_request:
     branches:
-      - dev_master
+      - main
     types:
       - opened
       - synchronize
