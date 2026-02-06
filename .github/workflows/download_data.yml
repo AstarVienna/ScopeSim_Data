@@ -3,7 +3,12 @@ name: Download data required by ScopeSim
 on:
   pull_request:
     branches:
-      - main
+      - dev_master
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
 
   schedule:
     # Run every day at 6:00 UTC
@@ -15,6 +20,7 @@ on:
 jobs:
   download_data:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }}
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v6
