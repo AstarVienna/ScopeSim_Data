@@ -37,6 +37,7 @@ jobs:
 
       # Create a PR with the changes from the above script, if any.
       - name: Create Pull Request
+        if: github.event_name != 'pull_request'
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Update stored data"
@@ -52,7 +53,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.download_data.result == 'failure' || needs.download_data.result == 'timed_out') && !(github.event_name == 'pull_request') }}
+    if: ${{ always() && (needs.download_data.result == 'failure' || needs.download_data.result == 'timed_out') && (github.event_name != 'pull_request') }}
     needs:
       - download_data
     steps:

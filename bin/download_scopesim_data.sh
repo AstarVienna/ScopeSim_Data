@@ -102,7 +102,7 @@ popd
 git clone https://github.com/AstarVienna/irdb.git
 pushd irdb
 # irdb doesn't use poetry yet
-pip install -e ".[test]"
+pip install -r requirements.github_actions.txt
 popd
 
 # poetry update will upgrade only to the latest versions that are released.
@@ -119,7 +119,7 @@ pip install -e ScopeSim
 pip install -e ScopeSim_Templates
 pip install -e skycalc_ipy
 pip install -e AnisoCADO
-pip install -e irdb
+# pip install -e irdb
 
 
 # Run the tests.
