@@ -37,6 +37,7 @@ jobs:
 
       # Create a PR with the changes from the above script, if any.
       - name: Create Pull Request
+        if: github.event_name != 'pull_request'
         uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Update stored data"
