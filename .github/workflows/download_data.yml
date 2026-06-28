@@ -23,7 +23,7 @@ jobs:
     if: ${{ !github.event.pull_request.draft && !contains(github.event.pull_request.labels.*.name, 'automated')}}
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -57,7 +57,7 @@ jobs:
     needs:
       - download_data
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env:
