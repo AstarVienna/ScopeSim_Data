@@ -1,11 +1,10 @@
+# -*- coding: utf-8 -*-
+"""Cache paths are defined here."""
+
 from pathlib import Path
 
 path_here = Path(__file__).parent
 
-dir_cache = path_here / "data"
-dir_cache_skycalc = dir_cache / "skycalc_ipy"
+cache_dir = path_here / "data"
 
-__all__ = [
-    dir_cache,
-    dir_cache_skycalc,
-]
+__all__ = ["cache_dir"]
