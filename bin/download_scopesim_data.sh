@@ -34,21 +34,21 @@ if [[ $# -gt 1 ]]; then
 fi
 
 if [[ $# -lt 2 ]]; then
-  DIR_DATA=$(python -c "from scopesim_data import dir_cache; print(dir_cache)")
-  DIR_DATA_SKYCALC=$(python -c "from scopesim_data import dir_cache_skycalc; print(dir_cache_skycalc)")
+  DIR_DATA=$(python -c "from scopesim_data import cache_dir; print(cache_dir)")
+  # DIR_DATA_SKYCALC=$(python -c "from scopesim_data import dir_cache_skycalc; print(dir_cache_skycalc)")
 else
   DIR_DATA=$1
-  DIR_DATA_SKYCALC="${DIR_DATA}/skycalc_ipy"
+  # DIR_DATA_SKYCALC="${DIR_DATA}/skycalc_ipy"
 fi
 
 
 # Get the right directories.
 mkdir -p "${DIR_WORK}"
 mkdir -p "${DIR_DATA}"
-mkdir -p "${DIR_DATA_SKYCALC}"
+# mkdir -p "${DIR_DATA_SKYCALC}"
 
-export SKYCALC_IPY_CACHE_DIR="${DIR_DATA_SKYCALC}"
-
+# export SKYCALC_IPY_CACHE_DIR="${DIR_DATA_SKYCALC}"
+export SCOPESIM_DATA_CI_FLAG=1
 
 # Create the environment.
 pushd "${DIR_WORK}"
