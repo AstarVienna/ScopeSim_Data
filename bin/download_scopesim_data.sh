@@ -54,7 +54,7 @@ export SCOPESIM_DATA_CI_FLAG=1
 pushd "${DIR_WORK}"
 python -m venv envdata
 source envdata/bin/activate
-pip install poetry
+pipx install poetry==2.4.1
 
 # Download and install all the packages. Has to be done from git, because the
 # releases do not (always) have the test files.
@@ -89,8 +89,8 @@ popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
 pushd AnisoCADO
-# AnisoCADO doesn't use poetry yet.
-pip install -e ".[test,dev,docs]"
+poetry install --with=test,docs
+poetry update --with=test,docs
 popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
