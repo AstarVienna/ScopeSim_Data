@@ -95,8 +95,8 @@ popd
 
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
-poetry install --with=test,dev,docs
-poetry update --with=test,dev,docs
+poetry install --with=test,docs
+poetry update --with=test,docs
 popd
 
 git clone https://github.com/AstarVienna/irdb.git
