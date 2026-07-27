@@ -75,6 +75,12 @@ poetry install --with=test,docs
 poetry update --with=test,docs
 popd
 
+git clone https://github.com/AstarVienna/irdb.git
+pushd irdb
+# irdb doesn't use poetry yet
+pip install -r requirements.github_actions.txt
+popd
+
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 pushd ScopeSim_Templates
 poetry install --with=test,docs
@@ -97,12 +103,6 @@ git clone https://github.com/AstarVienna/AnisoCADO.git
 pushd AnisoCADO
 poetry install --with=test,docs
 poetry update --with=test,docs
-popd
-
-git clone https://github.com/AstarVienna/irdb.git
-pushd irdb
-# irdb doesn't use poetry yet
-pip install -r requirements.github_actions.txt
 popd
 
 # poetry update will upgrade only to the latest versions that are released.
