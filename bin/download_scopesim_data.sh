@@ -75,6 +75,12 @@ poetry install --with=test,docs
 poetry update --with=test,docs
 popd
 
+git clone https://github.com/AstarVienna/ScopeSim_Templates.git
+pushd ScopeSim_Templates
+poetry install --with=test,docs
+poetry update --with=test,docs
+popd
+
 git clone https://github.com/AstarVienna/ScopeSim.git
 pushd ScopeSim
 poetry install --with=test,dev,docs
@@ -89,12 +95,6 @@ popd
 
 git clone https://github.com/AstarVienna/AnisoCADO.git
 pushd AnisoCADO
-poetry install --with=test,docs
-poetry update --with=test,docs
-popd
-
-git clone https://github.com/AstarVienna/ScopeSim_Templates.git
-pushd ScopeSim_Templates
 poetry install --with=test,docs
 poetry update --with=test,docs
 popd
