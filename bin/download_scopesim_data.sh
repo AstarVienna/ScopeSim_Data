@@ -49,10 +49,10 @@ mkdir -p "${DIR_DATA}"
 export SCOPESIM_DATA_CI_FLAG=1
 
 # Create the environment.
-pushd "${DIR_WORK}"
 python -m venv envdata
 source envdata/bin/activate
-pipx install poetry==2.4.1
+pip install -e .
+pushd "${DIR_WORK}"
 
 # Download and install all the packages. Has to be done from git, because the
 # releases do not (always) have the test files.

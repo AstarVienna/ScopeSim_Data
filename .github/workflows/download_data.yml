@@ -24,16 +24,27 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v7
+
+      - name: Install poetry
+        shell: bash
+        run: pipx install poetry==2.4.1
+
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
           python-version: 3.13
+
       - name: Install dependencies
         run: |
+          python -m venv envdata
+          source envdata/bin/activate
           python -m pip install --upgrade pip
           pip install -e .
+          poetry install
+
       - name: Run download script
-        run: bash bin/download_scopesim_data.sh
+        # run: poetry run main_script  # doesn't work, with nonsensical message -.-
+        run: poetry run bash bin/download_scopesim_data.sh
 
       # Create a PR with the changes from the above script, if any.
       - name: Create Pull Request
