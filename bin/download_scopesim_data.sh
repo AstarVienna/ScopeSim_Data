@@ -26,8 +26,6 @@ function cleanup {
 trap cleanup EXIT
 
 
-
-
 if [[ $# -gt 1 ]]; then
   echo "Usage: $0 [data directory]"
   exit 2
@@ -61,49 +59,13 @@ pipx install poetry==2.4.1
 # All poetry files are updated with `poetry update` to ensure we test the latest
 # versions of our dependencies.
 
-# Pyckles must go first, because otherwise it uninstalls scipy (????). See
-# https://stackoverflow.com/questions/67085976/how-to-stop-poetry-from-uninstalling-packages
 git clone https://github.com/AstarVienna/Pyckles.git
-pushd Pyckles
-poetry install --with=test,docs
-poetry update --with=test,docs
-popd
-
 git clone https://github.com/AstarVienna/speXtra.git
-pushd speXtra
-poetry install --with=test,docs
-poetry update --with=test,docs
-popd
-
 git clone https://github.com/AstarVienna/ScopeSim.git
-pushd ScopeSim
-poetry install --with=test,dev,docs
-poetry update --with=test,dev,docs
-popd
-
 git clone https://github.com/AstarVienna/skycalc_ipy.git
-pushd skycalc_ipy
-poetry install --with=test,docs
-poetry update --with=test,docs
-popd
-
 git clone https://github.com/AstarVienna/AnisoCADO.git
-pushd AnisoCADO
-poetry install --with=test,docs
-poetry update --with=test,docs
-popd
-
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
-pushd ScopeSim_Templates
-poetry install --with=test,dev,docs
-poetry update --with=test,dev,docs
-popd
-
 git clone https://github.com/AstarVienna/irdb.git
-pushd irdb
-# irdb doesn't use poetry yet
-pip install -r requirements.github_actions.txt
-popd
 
 # poetry update will upgrade only to the latest versions that are released.
 # The packages will therefore downgrade each other.
@@ -119,7 +81,11 @@ pip install -e ScopeSim
 pip install -e ScopeSim_Templates
 pip install -e skycalc_ipy
 pip install -e AnisoCADO
-# pip install -e irdb
+
+pushd irdb
+# irdb doesn't use poetry yet
+pip install -r requirements.github_actions.txt
+popd
 
 
 # Run the tests.
