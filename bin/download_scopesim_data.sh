@@ -67,25 +67,19 @@ git clone https://github.com/AstarVienna/AnisoCADO.git
 git clone https://github.com/AstarVienna/ScopeSim_Templates.git
 git clone https://github.com/AstarVienna/irdb.git
 
-# poetry update will upgrade only to the latest versions that are released.
-# The packages will therefore downgrade each other.
-# But ScopeSim_Data should use the latest version of all our projects
-# (to download the data they need, and to test whether they work together).
-# So the projects need to be installed again.
-# Note that it is not possible to only use pip, poetry is required to install
-# the dependency groups (that is, dev/test/docs). See
-# https://stackoverflow.com/questions/76118614/is-it-possible-to-install-poetry-groups-with-pip
-pip install -e Pyckles
-pip install -e speXtra
-pip install -e ScopeSim
-pip install -e ScopeSim_Templates
-pip install -e skycalc_ipy
-pip install -e AnisoCADO
-
+# These need to be in descending order to avoid overwriting
+# a dev install with a released version.
 pushd irdb
 # irdb doesn't use poetry yet
 pip install -r requirements.github_actions.txt
 popd
+
+pip install -e ScopeSim_Templates
+pip install -e ScopeSim
+pip install -e speXtra
+pip install -e skycalc_ipy
+pip install -e Pyckles
+pip install -e AnisoCADO
 
 
 # Run the tests.
