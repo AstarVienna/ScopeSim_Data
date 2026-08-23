@@ -1,32 +1,42 @@
 [project]
 name = "ScopeSim_Data"
-version = "0.0.1-alpha"
+version = "0.1.0.dev0"
 description = "Data often used by ScopeSim and related tools."
 readme = "README.md"
-requires-python = ">=3.8"
-license = {text = "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"}
+requires-python = ">=3.12, <3.15"
+license = "GPL-3.0-or-later"
 authors = [
-    {name = "Hugo Buddelmeijer", email="hugo@buddelmeijer.nl"},
+    {name = "Hugo Buddelmeijer", email = "hugo@buddelmeijer.nl"},
 ]
 maintainers = [
-    {name = "Kieran Leschinski", email="kieran.leschinski@unive.ac.at"},
-    {name = "Hugo Buddelmeijer", email="hugo@buddelmeijer.nl"},
+    {name = "Kieran Leschinski", email = "kieran.leschinski@univie.ac.at"},
+    {name = "Hugo Buddelmeijer", email = "hugo@buddelmeijer.nl"},
+    {name = "Fabian Haberhauer", email = "fabian.haberhauer@univie.ac.at"},
 ]
-classifiers=[
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering :: Astronomy",
-]
+dynamic = [ "classifiers" ]
 dependencies = []
 
 [project.urls]
 "Source" = "https://github.com/AstarVienna/ScopeSim_Data"
 
-# TODO: Figure out whether the below actually puts the script in the PATH somewhere.
-[tools.setuptools]
-script_files = "bin/download_scopesim_data.sh"
+[tool.poetry]
+package-mode = true  # Needs to pretend to be a package to be imported
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
 
-[tool.setuptools.packages]
-find = {}
+[tool.poetry.group.test.dependencies]
+pytest = "^9.1.1"
+pytest-notebook = ">=0.11.0"
+myst-nb = "^1.4.0"
+
+[tool.poetry.scripts]
+main_script = { reference = "bin/download_scopesim_data.sh", type = "file" }
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
