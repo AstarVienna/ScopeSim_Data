@@ -8,13 +8,16 @@ It is better to cache the test data, because it uses the same data each time.
 
 Currently, `ScopeSim_Data` contains the data from
 * `skycalc_ipy`
+* `speXtra`
 
 that is downloaded by tests or notebooks from
+* `Pyckles`
+* `speXtra`
 * `ScopeSim`
-* `ScopeSim_Templates`
-* `irdb`
 * `skycalc_ipy`
 * `AnisoCADO`
+* `ScopeSim_Templates`
+* `irdb`
 
 ## Usage
 
@@ -24,7 +27,7 @@ that is downloaded by tests or notebooks from
 pip install git+https://github.com/AstarVienna/ScopeSim_Data.git
 ```
 
-Then `skycalc_ipy` will automatically find it and use the cached data.
+Then `skycalc_ipy` and `speXtra` will automatically find it and use the cached data.
 
 ### Advanced Usage
 
@@ -46,9 +49,3 @@ The action is run every night, and can also be ran manually.
 
 The "Download data" action installs all ScopeSim related packages from source, runs their full tests suites, including notebooks.
 It will subsequestly create a pull request with any new data that has been retrieved.
-
-## TODO
-
-There are several other packages that download from the internet, e.g. `speXtra`.
-Those could be added to the `ScopeSim_data` repository as well.
-
