@@ -110,7 +110,7 @@ pushd ScopeSim_Templates
 python -m pytest
 popd
 
-pushd sopesim-targets
+pushd scopesim-targets
 python -m pytest
 popd
 
