@@ -30,7 +30,7 @@ classifiers = [
 
 [tool.poetry.group.test.dependencies]
 pytest = "^9.1.1"
-pytest-notebook = ">=0.11.0"
+jupytext = "^1.19.5"
 myst-nb = "^1.4.0"
 
 [tool.poetry.scripts]
