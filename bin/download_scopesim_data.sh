@@ -59,6 +59,8 @@ pushd "${DIR_WORK}"
 # All poetry files are updated with `poetry update` to ensure we test the latest
 # versions of our dependencies.
 
+git clone https://github.com/AstarVienna/astar-utils.git
+git clone https://github.com/AstarVienna/scopesim-targets.git
 git clone https://github.com/AstarVienna/Pyckles.git
 git clone https://github.com/AstarVienna/speXtra.git
 git clone https://github.com/AstarVienna/ScopeSim.git
@@ -74,15 +76,20 @@ pushd irdb
 pip install -r requirements.github_actions.txt
 popd
 
+pip install -e scopesim-targets
 pip install -e ScopeSim_Templates
 pip install -e ScopeSim
 pip install -e speXtra
 pip install -e skycalc_ipy
 pip install -e Pyckles
 pip install -e AnisoCADO
-
+pip install -e astar-utils
 
 # Run the tests.
+pushd astar-utils
+python -m pytest
+popd
+
 pushd Pyckles
 python -m pytest
 popd
@@ -100,6 +107,10 @@ python -m pytest
 popd
 
 pushd ScopeSim_Templates
+python -m pytest
+popd
+
+pushd scopesim-targets
 python -m pytest
 popd
 
